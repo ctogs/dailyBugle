@@ -12,7 +12,7 @@ services:
   auth-service:
     build:
       context: ./backend
-      dockerfile: Dockerfile-auth
+      dockerfile: dockerfile-auth
     ports:
       - "4000:4000"
     depends_on:
@@ -21,7 +21,7 @@ services:
   article-service:
     build:
       context: ./backend
-      dockerfile: Dockerfile-article
+      dockerfile: dockerfile-article
     ports:
       - "4001:4001"
     depends_on:
@@ -30,7 +30,7 @@ services:
   ad-service:
     build:
       context: ./backend
-      dockerfile: Dockerfile-ad
+      dockerfile: dockerfile-ad
     ports:
       - "4002:4002"
     depends_on:
@@ -39,9 +39,9 @@ services:
   frontend:
     build:
       context: ./frontend
-      dockerfile: Dockerfile-frontend
+      dockerfile: dockerfile-frontend
     ports:
-      - "8080:80"
+      - "8080:8080"
     depends_on:
       - auth-service
       - article-service
