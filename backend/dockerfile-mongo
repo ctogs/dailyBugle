@@ -1,0 +1,7 @@
+FROM mongo:5.0
+
+# Expose the default MongoDB port
+EXPOSE 27017
+
+# Command to start MongoDB
+CMD ["mongod"]
