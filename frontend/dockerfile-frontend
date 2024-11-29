@@ -1,0 +1,15 @@
+# Use the official Apache httpd image as the base
+FROM httpd:2.4
+
+# Copy custom configuration files for httpd
+COPY httpd.conf /usr/local/apache2/conf/httpd.conf
+COPY proxy-html.conf /usr/local/apache2/conf/extra/proxy-html.conf
+
+# Copy all frontend files (HTML, CSS, JS) into the Apache document root
+COPY . /usr/local/apache2/htdocs/
+
+# Expose HTTP port
+EXPOSE 80
+
+# Start Apache server
+CMD ["httpd-foreground"]

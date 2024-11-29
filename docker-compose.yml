@@ -36,16 +36,16 @@ services:
     depends_on:
       - mongo
 
-  # frontend:
-  #   build:
-  #     context: ./frontend
-  #     dockerfile: Dockerfile-frontend
-  #   ports:
-  #     - "8080:80"
-  #   depends_on:
-  #     - auth-service
-  #     - article-service
-  #     - ad-service
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile-frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - auth-service
+      - article-service
+      - ad-service
 
 volumes:
   mongo-data:
