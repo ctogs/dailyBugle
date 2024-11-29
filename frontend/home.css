@@ -1,0 +1,44 @@
+.container {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.view {
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+}
+
+.story-container, .comment-section {
+  display: flex;
+  justify-content: space-between;
+}
+
+.story, .image, .ad, .categories, .comment, .other-comments, .stories-list {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 5px;
+}
+
+.story {
+  flex: 3;
+}
+
+.image {
+  flex: 1;
+}
+
+.ad, .categories {
+  width: 200px;
+  height: 100px;
+}
+
+.comment input {
+  width: 100%;
+}

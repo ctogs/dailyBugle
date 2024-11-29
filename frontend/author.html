@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Author Story Creator</title>
+    <link rel="stylesheet" href="author.css">
+</head>
+<body>
+    <div class="story-container">
+        <header>
+            <h1>Headline</h1>
+            <span>[J Jonah]</span>
+        </header>
+        <input type="hidden" id="edit-mode" value="false">
+        <form id="story-form">
+            <div class="field-group">
+                <label for="story-content">Story Content</label>
+                <textarea id="body" class="edit-box" placeholder="Write your story here..."></textarea>
+            </div>
+
+            <div class="field-group">
+                <label for="teaser">Teaser</label>
+                <textarea id="teaser" class="edit-box" placeholder="Write a short teaser..."></textarea>
+            </div>
+
+            <div class="field-group">
+                <label for="categories">Categories</label>
+                <input type="text" id="categories" class="edit-box" placeholder="Add categories (comma-separated)">
+            </div>
+
+            <div class="field-group">
+                <label for="title">Title</label>
+                <input type="text" id="title" class="edit-box" placeholder="Enter the title">
+            </div>
+
+            <button type="submit" class="submit-btn">Publish Story</button>
+        </form> <br>
+        <a href="reader.html">Go to reader page</a>
+        <button id="logout-button">Logout</button>
+    </div>
+    <script src="authoreds.js"></script>
+</body>
+</html>

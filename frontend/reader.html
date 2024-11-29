@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Bugle - Reader</title>
+    <link rel="stylesheet" href="reader.css">
+</head>
+<body>
+    <div class="container">
+        <button id="logout-button">Logout</button>
+
+        <div id="reader-view" class="view">
+            <h1 id="article-title">Headline</h1>
+            <div class="story-container">
+                <div class="story" id="story-body">
+                    <p>Loading story...</p>
+                </div>
+                <div class="image">
+                    <p>Img</p>
+                </div>
+            </div>
+            <button id="edit-story-button" style="display: none;">Edit Story</button>
+            <div id="comment-section">
+                <h3>Comments</h3>
+                <div id="comments-list">
+                    <!-- Comments will be inserted here -->
+                </div>
+                <div class="add-comment">
+                    <input type="text" id="comment-input" placeholder="Add a comment" />
+                    <button id="submit-comment">Submit</button>
+                </div>
+            </div>
+            <div class="sidebar">
+                <div class="advert">
+                    <p id="ad">Ad</p>
+                </div>
+                <div class="categories" id="categories-list">
+                    <h4>Categories</h4>
+                    <ul>
+                        <!-- Categories will be inserted here -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <a href="author.html" id="new-story-button" style="display: none;">Create a new story</a>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search stories..." />
+            <ul id="search-results">
+                <!-- Search results will be dynamically populated here -->
+            </ul>
+        </div>
+
+        <!-- Preview list of other stories -->
+        <div id="other-stories">
+            <h2>Other Stories</h2>
+            <ul id="other-stories-list">
+                <!-- Preview of other stories will be inserted here -->
+            </ul>
+        </div>
+    </div>
+
+    <script src="readerr.js"></script>
+</body>
+</html>
