@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:5.0
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  auth-service:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile-auth
+    ports:
+      - "4000:4000"
+    depends_on:
+      - mongo
+
+  article-service:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile-article
+    ports:
+      - "4001:4001"
+    depends_on:
+      - mongo
+
+  ad-service:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile-ad
+    ports:
+      - "4002:4002"
+    depends_on:
+      - mongo
+
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #     dockerfile: Dockerfile-frontend
+  #   ports:
+  #     - "8080:80"
+  #   depends_on:
+  #     - auth-service
+  #     - article-service
+  #     - ad-service
+
+volumes:
+  mongo-data:
