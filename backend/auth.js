@@ -42,21 +42,21 @@ app.post('/signup', async (req, res) => {
   }
 
   // Insert user with a role of 'reader'
-  const newUser = await users.insertOne({ username, password, role: 'reader' });
+  const newUser = await users.insertOne({ username, password, role: 'author' });
 
   // Store user session data, including role, OS, and browser information
   req.session.userInfo = {
     userId: newUser.insertedId,
     username,
-    role: 'reader',
+    role: 'author',
     ip: req.ip,
     os: agent.os.toString(),
     browser: agent.toAgent()
   };
 
   // Set a cookie with the role for client access if needed
-  res.cookie('user_role', 'reader', { maxAge: 24 * 60 * 60 * 1000, httpOnly: true });
-  res.send({role: 'reader'});
+  res.cookie('user_role', 'author', { maxAge: 24 * 60 * 60 * 1000, httpOnly: true });
+  res.send({role: 'author'});
 });
 
 app.post('/login', async (req, res) => {
