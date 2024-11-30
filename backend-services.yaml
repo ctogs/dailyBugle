@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: auth-service
+        image: auth-service-image
+        ports:
+        - containerPort: 4000
+        env:
+        - name: MONGO_URI
+          value: "mongodb://mongo:27017"
+      - name: article-service
+        image: article-service-image
+        ports:
+        - containerPort: 4001
+        env:
+        - name: MONGO_URI
+          value: "mongodb://mongo:27017"
+      - name: ad-service
+        image: ad-service-image
+        ports:
+        - containerPort: 4002
+        env:
+        - name: MONGO_URI
+          value: "mongodb://mongo:27017"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth-service
+spec:
+  ports:
+  - port: 4000
+    targetPort: 4000
+  selector:
+    app: backend
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: article-service
+spec:
+  ports:
+  - port: 4001
+    targetPort: 4001
+  selector:
+    app: backend
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ad-service
+spec:
+  ports:
+  - port: 4002
+    targetPort: 4002
+  selector:
+    app: backend
