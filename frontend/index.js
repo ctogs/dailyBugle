@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", async function () {
   try {
-      const response = await fetch('http://localhost:8080/dailyBugle/auth/userInfo', {
+      const response = await fetch('/dailyBugle/auth/userInfo', {
           method: 'GET',
           credentials: 'include' // Ensure cookies are sent
       });

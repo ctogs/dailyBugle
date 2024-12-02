@@ -7,7 +7,7 @@ if (isEditMode && articleId) {
 
   // Fetch the article data and prefill the form
   async function prefillStoryData() {
-      const response = await fetch(`http://localhost:8080/dailyBugle/article/singleStory?story=${articleId}`);
+      const response = await fetch(`/dailyBugle/article/singleStory?story=${articleId}`);
       if (response.ok) {
           const article = await response.json();
           document.getElementById("title").value = article.title;
@@ -37,7 +37,7 @@ document.getElementById('story-form').addEventListener('submit', async (e) => {
   formData.body = body
   formData.categories = categories
 
-  const endPoint = isEditMode ? `http://localhost:8080/dailyBugle/article/stories/${articleId}` : 'http://localhost:8080/dailyBugle/article/stories'
+  const endPoint = isEditMode ? `/dailyBugle/article/stories/${articleId}` : '/dailyBugle/article/stories'
 
   try {
       const response = await fetch(endPoint, {
@@ -62,7 +62,7 @@ document.getElementById('story-form').addEventListener('submit', async (e) => {
 
 document.getElementById("logout-button").addEventListener("click", async () => {
     try {
-        const response = await fetch("http://localhost:8080/dailyBugle/auth/logout", {
+        const response = await fetch("/dailyBugle/auth/logout", {
             method: "POST",
             credentials: "include", // Ensure cookies are sent with the request
         });

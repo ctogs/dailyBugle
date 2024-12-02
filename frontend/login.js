@@ -26,7 +26,7 @@ userForm.addEventListener("submit", (event) => {
 
 async function signup(username, password) {
     try {
-        const response = await fetch('http://localhost:8080/dailyBugle/auth/signup', {
+        const response = await fetch('dailyBugle/auth/signup', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -48,7 +48,7 @@ async function signup(username, password) {
 
 async function login(username, password) {
     try {
-        const response = await fetch('http://localhost:8080/dailyBugle/auth/login', {
+        const response = await fetch('dailyBugle/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

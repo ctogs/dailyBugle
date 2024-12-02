@@ -2,6 +2,8 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: dailybugle-pod
+  labels:
+    app: dailybugle
 spec:
   containers:
   - name: mongo
@@ -14,12 +16,12 @@ spec:
 
   - name: auth-service
     image: dailybugle-auth-service
-    imagePullPolicy: Never # stops kind from pulling from public docker registry
+    imagePullPolicy: Never
     ports:
     - containerPort: 4000
     env:
     - name: MONGO_URI
-      value: "mongodb://host.docker.internal:27017"
+      value: "mongodb://mongo:27017"
 
   - name: article-service
     image: dailybugle-article-service
@@ -28,7 +30,7 @@ spec:
     - containerPort: 4001
     env:
     - name: MONGO_URI
-      value: "mongodb://host.docker.internal:27017"
+      value: "mongodb://mongo:27017"
 
   - name: ad-service
     image: dailybugle-ad-service
@@ -37,7 +39,7 @@ spec:
     - containerPort: 4002
     env:
     - name: MONGO_URI
-      value: "mongodb://host.docker.internal:27017"
+      value: "mongodb://mongo:27017"
 
   - name: frontend
     image: dailybugle-frontend

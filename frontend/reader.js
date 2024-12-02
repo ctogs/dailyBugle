@@ -1,4 +1,4 @@
-const singleStoryUrl = "http://localhost:8080/dailyBugle/article/singleStory";
+const singleStoryUrl = "/dailyBugle/article/singleStory";
 let mainArticleID = "none"
 const urlParams = new URLSearchParams(window.location.search)
 const idFromParams = urlParams.get('id')
@@ -6,7 +6,7 @@ let globalOtherStories
 
 async function getUserRole() {
     // Example API endpoint to get user role (author, reader, anonymous)
-    const response = await fetch("http://localhost:8080/dailyBugle/auth/userInfo");
+    const response = await fetch("/dailyBugle/auth/userInfo");
     if (response.ok) {
         const data = await response.json();
         return data.role; // Example response: { role: "author" }
@@ -58,7 +58,7 @@ async function getStories(id = null) {
     });
 
     // Fetch and display other stories
-    const otherStoriesResponse = await fetch(`http://localhost:8080/dailyBugle/article/stories?story=${mainArticle._id}`);
+    const otherStoriesResponse = await fetch(`/dailyBugle/article/stories?story=${mainArticle._id}`);
     const otherStories = await otherStoriesResponse.json();
     globalOtherStories = otherStories
     const otherStoriesList = document.getElementById("other-stories-list");
@@ -111,7 +111,7 @@ document.getElementById('submit-comment').addEventListener('click', async () => 
 
     try {
         // Submit the comment to the backend
-        const response = await fetch(`http://localhost:8080/dailyBugle/article/stories/${mainArticleID}/comment`, {
+        const response = await fetch(`/dailyBugle/article/stories/${mainArticleID}/comment`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -136,7 +136,7 @@ document.getElementById('submit-comment').addEventListener('click', async () => 
 
 document.querySelector('.advert').addEventListener('click', async () => {
     try {
-        const response = await fetch('http://localhost:8080/dailyBugle/ad/event', {
+        const response = await fetch('/dailyBugle/ad/event', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -185,7 +185,7 @@ document.getElementById("search-input").addEventListener("input", (e) => {
 
 document.getElementById("logout-button").addEventListener("click", async () => {
     try {
-        const response = await fetch("http://localhost:8080/dailyBugle/auth/logout", {
+        const response = await fetch("/dailyBugle/auth/logout", {
             method: "POST",
             credentials: "include", // Ensure cookies are sent with the request
         });
