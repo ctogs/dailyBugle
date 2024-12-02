@@ -5,7 +5,7 @@ const MongoStore = require('connect-mongo');
 const { MongoClient, ObjectId } = require('mongodb');
 
 const app = express();
-const mongoURI = "mongodb://host.docker.internal:27017";
+const mongoURI = "mongodb://localhost:27017";
 const client = new MongoClient(mongoURI);
 
 app.use(cookieParser());

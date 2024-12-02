@@ -7,7 +7,7 @@ const { MongoClient } = require('mongodb');
 const MongoStore = require('connect-mongo');
 
 const app = express();
-const mongoURI = "mongodb://host.docker.internal:27017";
+const mongoURI = "mongodb://localhost:27017";
 const client = new MongoClient(mongoURI);
 
 const port = 4000;

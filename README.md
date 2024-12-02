@@ -4,8 +4,10 @@ kind create cluster --config kind-cluster.yaml --name dailybugle
 
 kind load docker-image dailybugle-auth-service --name dailybugle && kind load docker-image dailybugle-article-service --name dailybugle && kind load docker-image dailybugle-ad-service --name dailybugle && kind load docker-image dailybugle-frontend --name dailybugle
 
-kubectl apply -f single-pod.yaml
+kubectl apply -f pv-claim.yaml && kubectl apply -f pv-volume.yaml && kubectl apply -f single-pod.yaml
 
+
+*** Optional
 helm upgrade --install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard --create-namespace --namespace kubernetes-dashboard
 
 kubectl -n kubernetes-dashboard port-forward svc/kubernetes-dashboard-kong-proxy 8443:443
