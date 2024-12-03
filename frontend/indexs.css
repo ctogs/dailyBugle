@@ -1,0 +1,59 @@
+/* Resetting default browser styles */
+body, h1, h2, p {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Styling the body for full-page central alignment */
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background: linear-gradient(135deg, #f0f0f0, #cfcfcf);
+}
+
+/* Styling the container */
+.container {
+  text-align: center;
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 600px;
+}
+
+/* Styling the links */
+a {
+  text-decoration: none;
+  color: #007BFF;
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #0056b3;
+}
+
+/* Anonymous view specific styling */
+#anonymous-view h1,
+#anonymous-view h2 {
+  margin-bottom: 1rem;
+}
+
+#login-link {
+  font-size: 1.5rem;
+}
+
+/* Role indicator styling */
+p {
+  margin-top: 2rem;
+  font-size: 1rem;
+  color: #333;
+  font-style: italic;
+}

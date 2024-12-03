@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 function displayRoleIndicator(role) {
   const roleIndicator = document.createElement("p");
-  roleIndicator.textContent = `You are a ${role.charAt(0).toUpperCase() + role.slice(1)}`;
-  document.body.appendChild(roleIndicator);
+  const box = document.getElementById('anonymous-view')
+  roleIndicator.textContent = `You are a(n) ${role.charAt(0).toUpperCase() + role.slice(1)} user`;
+  box.appendChild(roleIndicator);
 }

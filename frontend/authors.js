@@ -14,6 +14,7 @@ if (isEditMode && articleId) {
           document.getElementById("teaser").value = article.teaser;
           document.getElementById("body").value = article.body;
           document.getElementById("categories").value = article.categories.join(", ");
+          document.getElementById('image').value = article.image
       } else {
           alert("Failed to fetch story data.");
       }
@@ -29,6 +30,7 @@ document.getElementById('story-form').addEventListener('submit', async (e) => {
   const teaser = document.getElementById('teaser').value.trim();
   const body = document.getElementById('body').value.trim();
   const categories = document.getElementById('categories').value.trim().split(',');
+  const image = document.getElementById('image').value.trim()
 
   // Form data to send
   const formData = {}
@@ -36,6 +38,7 @@ document.getElementById('story-form').addEventListener('submit', async (e) => {
   formData.teaser = teaser
   formData.body = body
   formData.categories = categories
+  formData.image = image
 
   const endPoint = isEditMode ? `http://localhost:8080/dailyBugle/article/stories/${articleId}` : 'http://localhost:8080/dailyBugle/article/stories'
 
@@ -69,7 +72,7 @@ document.getElementById("logout-button").addEventListener("click", async () => {
 
         if (response.ok) {
             alert("Logged out successfully");
-            window.location.href = "login.html"; // Redirect to the login page
+            window.location.href = "index.html"; // Redirect to the login page
         } else {
             alert("Failed to log out");
         }

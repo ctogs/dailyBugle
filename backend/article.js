@@ -61,7 +61,7 @@ app.post('/stories', async (req, res) => {
   const db = client.db('dailyBugle');
   const articles = db.collection('articles');
 
-  const { title, teaser, body, categories } = req.body;
+  const { title, teaser, body, categories, image } = req.body;
 
   if (!title || !teaser || !body) {
     return res.status(400).send({ error: "Title, teaser, and body are required" });
@@ -73,6 +73,7 @@ app.post('/stories', async (req, res) => {
     body,
     created: new Date(),
     edited: new Date(),
+    image: image,
     categories: categories || [],
     comments: []  // Initialize with an empty comments array
   };

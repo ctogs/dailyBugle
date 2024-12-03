@@ -35,7 +35,7 @@ async function signup(username, password) {
         });
 
         if (response.ok) {
-            window.location.href = "index.html";
+            window.location.href = "reader.html";
         } else {
             const errorText = await response.text();
             alert(`Signup failed: ${errorText}`);
@@ -59,7 +59,7 @@ async function login(username, password) {
         if (response.ok) {
             const role = (await response.json()).role
             if (role === 'reader') window.location.href = "reader.html"
-            else if (role === 'author') window.location.href = "author.html"
+            else if (role === 'author') window.location.href = "reader.html"
             else window.location.href = "index.html";
         } else {
             const errorText = await response.text();

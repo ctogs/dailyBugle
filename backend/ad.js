@@ -36,6 +36,7 @@ app.post('/event', async (req, res) => {
           browser: userAgent.toAgent(),
           os: userAgent.os.toString(),
           articleId: req.body.articleId,
+          adId: req.body.adId,
           eventType: req.body.eventType,
           created: new Date()
       };
@@ -47,5 +48,17 @@ app.post('/event', async (req, res) => {
       res.status(500).send({ error: "Failed to record ad event" });
   }
 });
+
+app.get('/', async (req, res) => {
+  const db = client.db('dailyBugle')
+  const ads = db.collection('ads')
+  try {
+    const ad = (await ads.aggregate([{ $sample: { size: 1 } }]).toArray()).at(0)
+    res.send(ad)
+  } catch (e) {
+    console.error(e)
+    res.status(500).send({ error: "Failed to fetch ad"})
+  }
+})
 
 app.listen(4002, () => console.log('Article service running on port 4002'));

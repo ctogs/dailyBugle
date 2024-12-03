@@ -3,6 +3,7 @@ let mainArticleID = "none"
 const urlParams = new URLSearchParams(window.location.search)
 const idFromParams = urlParams.get('id')
 let globalOtherStories
+let globalAdId
 
 async function getUserRole() {
     // Example API endpoint to get user role (author, reader, anonymous)
@@ -34,6 +35,9 @@ async function getStories(id = null) {
         <p><strong>Last Edited:</strong> ${mainArticle.edited}</p>
     `;
 
+    const storyImage = document.getElementById("actual-image")
+    storyImage.src = mainArticle.image
+
     // Populate categories
     const categoriesList = document.getElementById("categories-list").querySelector("ul");
     categoriesList.innerHTML = ""; // Clear previous categories if any
@@ -52,7 +56,7 @@ async function getStories(id = null) {
         commentElement.innerHTML = `
             <p><strong>User:</strong> ${comment.username}</p>
             <p>${comment.comment}</p>
-            <p><em>${comment.date}</em></p>
+            <p><em>${comment.date.slice(0, 10)}</em></p>
         `;
         commentsList.appendChild(commentElement);
     });
@@ -84,14 +88,22 @@ async function getStories(id = null) {
             window.location.href = `author.html?edit=true&id=${mainArticleID}`;
         });
 
-        const advert = document.getElementById("ad")
+        const advert = document.getElementById("ad-div")
         advert.style.display = "none"
 
         document.getElementById("new-story-button").style.display = "flex"
-
-        if (userRole !== "reader") {
-            document.getElementsById('comment-section').style.display = "none"
-        }
+    } else {
+        const ad = await fetch("http://localhost:8080/dailyBugle/ad")
+        const adJson = await ad.json()
+        const adText = document.getElementById('ad-text')
+        adText.textContent = adJson.ad
+        const adImg = document.getElementById('pizza-ad')
+        adImg.src = adJson.image
+        globalAdId = adJson._id
+    }
+    console.log(userRole)
+    if (userRole === "anonymous") {
+        document.getElementById('comment-section').style.display = "none"
     }
 }
 
@@ -143,7 +155,8 @@ document.querySelector('.advert').addEventListener('click', async () => {
             },
             body: JSON.stringify({
                 eventType: 'adClick',
-                articleId: mainArticleID
+                articleId: mainArticleID,
+                adId: globalAdId
             })
         });
 
@@ -192,7 +205,7 @@ document.getElementById("logout-button").addEventListener("click", async () => {
 
         if (response.ok) {
             alert("Logged out successfully");
-            window.location.href = "login.html"; // Redirect to the login page
+            window.location.href = "index.html"; // Redirect to the login page
         } else {
             alert("Failed to log out");
         }
