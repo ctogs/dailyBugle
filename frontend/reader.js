@@ -8,10 +8,13 @@ let globalAdId
 async function getUserRole() {
     // Example API endpoint to get user role (author, reader, anonymous)
     const response = await fetch("http://localhost:8080/dailyBugle/auth/userInfo");
+    const indicator = document.getElementById('user-role-indicator')
     if (response.ok) {
         const data = await response.json();
+        indicator.textContent = "You are a(n) " + data.role
         return data.role; // Example response: { role: "author" }
     }
+    indicator.textContent = "You are anonymous"
     return "anonymous";
 }
 
@@ -31,8 +34,8 @@ async function getStories(id = null) {
     document.getElementById("story-body").innerHTML = `
         <h2>${mainArticle.teaser}</h2>
         <p>${mainArticle.body}</p>
-        <p><strong>Created:</strong> ${mainArticle.created}</p>
-        <p><strong>Last Edited:</strong> ${mainArticle.edited}</p>
+        <p><strong>Created:</strong> ${mainArticle.created.slice(0, 10) + " at " + mainArticle.created.slice(11, 19)}</p>
+        <p><strong>Last Edited:</strong> ${mainArticle.edited.slice(0, 10) + " at " + mainArticle.edited.slice(11, 19)}</p>
     `;
 
     const storyImage = document.getElementById("actual-image")
@@ -56,7 +59,7 @@ async function getStories(id = null) {
         commentElement.innerHTML = `
             <p><strong>User:</strong> ${comment.username}</p>
             <p>${comment.comment}</p>
-            <p><em>${comment.date.slice(0, 10)}</em></p>
+            <p><em>${comment.date.slice(0, 10) + " at " + comment.date.slice(11, 19)}</em></p>
         `;
         commentsList.appendChild(commentElement);
     });
@@ -104,6 +107,7 @@ async function getStories(id = null) {
     console.log(userRole)
     if (userRole === "anonymous") {
         document.getElementById('comment-section').style.display = "none"
+        document.getElementById('login-button').style.display = "flex"
     }
 }
 
